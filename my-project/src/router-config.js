@@ -3,40 +3,34 @@
 import activePublic from './page/activePublic/index.vue'
 import activeManage from './page/activeManage/index.vue'
 // 子页面
-import step1 from './page/activePublic/step1.vue'
-import step2 from './page/activePublic/step2.vue'
-import step3 from './page/activePublic/step3.vue'
-import step4 from './page/activePublic/step4.vue'
-import manage1 from './page/activeManage/step1.vue'
-import manage2 from './page/activeManage/step2.vue'
+import table from './page/activePublic/table.vue'
+import click from './page/activeManage/click.vue'
+import child from './page/activeManage/child.vue'
 export default [
   {
     // 配置路由，当路径为'/activePublic',使用组件activePublic
     path: '/activePublic',
     component: activePublic,
     children: [
-      // 路径为'/activePublic'，使用组件step1
-      { path: '', component: step1 },
-      // 路径为'/activePublic/step1'，使用组件step1
-      { path: 'step1', component: step1 },
-      // 路径为'/activePublic/step2'，使用组件step2
-      { path: 'step2', component: step2 },
-      { path: 'step3', component: step3 },
-      { path: 'step4', component: step4 }
+      // 路径为'/activePublic'
+      { path: '/', component: table }
     ]
   }, {
-    // 配置路由，当路径为'/activeManage',使用组件activePublic
+    // 配置路由，当路径为'/activeManage',使用组件activeManage
     path: '/activeManage',
     component: activeManage,
     children: [
-      // 路径为'/activeManage'，使用组件step1
-      { path: '', component: manage1 },
-      // 路径为'/activePublic/step1'，使用组件step1
-      { path: 'step1', component: manage1 }
+      // 路径为'/activeManage'
+      { path: '/', component: click }
     ]
   }, {
     path: '/step',
     name: 'step',
-    component: manage2
+    component: child
+  },
+  // 默认路由
+  {
+    path: '/',
+    component: click
   }
 ]
