@@ -5,6 +5,8 @@
      <el-button size="mini" @click.stop="test1()">子事件</el-button>
      <el-button size="mini" @click="test2()">不加stop父事件</el-button>
    </div>
+   <!-- 页面跳转 -->
+   <el-button size="mini" @click="tiaozhuan()">跳转事件</el-button>
    <!-- 视图 -->
   <router-view class="view"></router-view>
  </div>
@@ -23,6 +25,12 @@ export default {
     },
     test2 () {
       console.log('不加stop出子事件和父事件')
+    },
+    tiaozhuan () {
+      // 带参数的path跳转query参数地址栏能看见get
+      // this.$router.push({path: '/step', query: {id: 1, name: 'wgl'}})
+      // 带参数的name跳转params参数地址栏餐不见post,需要配置路由的name
+      this.$router.push({name: 'step', params: {id: 1, name: 'wgl'}})
     }
   }
 }

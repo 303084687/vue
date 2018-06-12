@@ -8,6 +8,7 @@ import step2 from './page/activePublic/step2.vue'
 import step3 from './page/activePublic/step3.vue'
 import step4 from './page/activePublic/step4.vue'
 import manage1 from './page/activeManage/step1.vue'
+import manage2 from './page/activeManage/step2.vue'
 export default [
   {
     // 配置路由，当路径为'/activePublic',使用组件activePublic
@@ -33,5 +34,9 @@ export default [
       // 路径为'/activePublic/step1'，使用组件step1
       { path: 'step1', component: manage1 }
     ]
+  }, {
+    path: '/step',
+    name: 'step',
+    component: manage2
   }
 ]
