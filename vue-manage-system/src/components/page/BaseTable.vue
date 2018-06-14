@@ -141,6 +141,7 @@
             handleEdit(index, row) {
                 this.idx = index;
                 const item = this.tableData[index];
+                alert(item.id)
                 this.form = {
                     name: item.name,
                     date: item.date,
