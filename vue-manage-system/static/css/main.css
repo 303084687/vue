@@ -149,7 +149,9 @@ a {
 }
 
 /*VueEditor*/
-
+.ql-editor p {
+  font-size: 16px;
+}
 .ql-container {
     min-height: 400px;
 }
