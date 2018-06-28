@@ -7,6 +7,7 @@
             </el-breadcrumb>
         </div>
         <div class="container">
+            <!--  <el-form-item label="新闻标题:" prop="title" :rules="[{ required: true, message: '新闻标题不能为空'}]"> -->
             <div class="plugins-tips">
                 Vue-Quill-Editor：基于Quill、适用于Vue2的富文本编辑器。
                 访问地址：<a href="https://github.com/surmon-china/vue-quill-editor" target="_blank">vue-quill-editor</a>
@@ -20,6 +21,14 @@
             <div class="limit">当前已输入 <span>{{nowLength}}</span> 个字符，您还可以输入 <span>{{SurplusLength}}</span> 个字符。</div>
             <el-button class="editor-btn" type="primary" @click="submit">提交</el-button>
 
+          <el-dialog title="请选择适配器" :visible.sync="showFlag" style="width:900px">
+            <div style="text-align: left; margin: 0;width:400px;" >
+            <div style="padding-top:20px;text-align: right">
+              <el-button type="text" size="small">取消</el-button>
+              <el-button type="primary" size="small">确定</el-button>
+            </div>
+          </div>
+        </el-dialog>
         </div>
     </div>
 </template>
@@ -39,6 +48,7 @@
                 },
                 nowLength:0,
                 SurplusLength:1000,
+                showFlag:false,
                 list:[{key:'entry_name',name:'#候选人姓名#',tip:'会自动填入接收面试通知候选人的真实姓名'}, {key:'company_name',name: '#公司名称#',tip:'会自动填入公司名称'},
                       {key:'postion',name: '#入职岗位#',tip:'会自动填入候选人的入职岗位'},{key:'dept',name: '#入职部门#',tip:'会自动填入候选人的入职部门'},
                       {key:'entry_time',name: '#预计入职时间#',tip:'会自动填入候选人的预计入职时间'},{key:'link_name',name: '#联系人姓名#',tip:'会自动填入您的姓名'},
@@ -51,7 +61,8 @@
         },
         methods: {
             onEditorChange({ editor, html, text }) {
-                this.content = html;
+
+                this.content = html
                 let textLength = text.length
                 if (textLength > 1000) {
                   editor.enable(false)
@@ -73,9 +84,11 @@
             //获取光标位置并添加数据
             getTextSelection(value,TextColor){
                 let range = this.$refs.myTextEditor.quill.getSelection()
-                var length = range.index
-                //在光标位置插入数据
-                 this.$refs.myTextEditor.quill.insertText(length, value, {'color': TextColor});
+                if(range!=null){
+                    var length = range.index
+                    //在光标位置插入数据
+                    this.$refs.myTextEditor.quill.insertText(length, value, {'color': TextColor});
+                }
             }
     }
 }
